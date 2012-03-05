@@ -406,7 +406,8 @@ public class AutowiringAugmentation implements Augmentation {
      */
     private void attribute(final MutableInstanceReference reference,
             final MutableContext context) {
-        reference.setReferencedId(context.getByName(reference.getName()).getId());
+        MutableInstance inst = context.getByName(reference.getName());
+        reference.setReferencedId(inst != null ? inst.getId() : "UNKNOWN." + reference.getName());
     }
 
 }

@@ -132,7 +132,10 @@ public class SinkAugmentation implements Augmentation {
         boolean factoryBean = false;
         if (source instanceof MutableInstanceReference) {
             MutableInstanceReference r = (MutableInstanceReference) source;
-            factoryBean = context.getByName(r.getName()).isFactoryBean();
+            MutableInstance inst = context.getByName(r.getName());
+            if (inst != null) {
+                factoryBean = inst.isFactoryBean();
+            }
         } else if (source instanceof MutableInstance) {
             MutableInstance r = (MutableInstance) source;
             factoryBean = r.isFactoryBean();

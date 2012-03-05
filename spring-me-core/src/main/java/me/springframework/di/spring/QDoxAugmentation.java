@@ -459,8 +459,8 @@ public class QDoxAugmentation implements Augmentation {
      */
     private void attribute(MutableInstanceReference reference, MutableContext context) {
         MutableInstance referent = context.getByName(reference.getName());
-        reference.setName(referent.getName());
-        reference.setReferencedId(referent.getId());
+        reference.setName(referent != null ? referent.getName() : "UNKNOWN." + reference.getName());
+        reference.setReferencedId(referent != null ? referent.getId() : "UNKNOWNID." + reference.getId());
     }
 
     /**
